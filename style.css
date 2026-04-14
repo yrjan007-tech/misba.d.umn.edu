@@ -1,0 +1,259 @@
+/* ... [Keep all previous variables, typography, and button CSS] ... */
+
+:root {
+    --umd-maroon: #7A0019;
+    --umd-gold: #FFCC33;
+    --umd-maroon-dark: #5c0013;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --bg-light: #f8f9fa;
+    --white: #ffffff;
+    --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --hover-shadow: 0 10px 15px rgba(0,0,0,0.15);
+    --border-radius: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* ========================================================================= */
+/* MULTI-PAGE LAYOUT FIXES                                                   */
+/* ========================================================================= */
+/* Forces the footer to always be pushed to the bottom of the screen */
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+main {
+    flex: 1; /* Pushes footer down */
+}
+
+h1, h2, h3 { margin-bottom: 1rem; color: var(--umd-maroon); }
+a { text-decoration: none; color: var(--umd-maroon); transition: color 0.3s ease; }
+a:hover { color: var(--umd-gold); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.text-center { text-align: center; }
+.section-padding { padding: 80px 0; }
+.bg-light { background-color: var(--bg-light); }
+.w-100 { width: 100%; }
+.page-title { margin-bottom: 40px; font-size: 2.5rem; }
+
+/* Buttons */
+.btn { display: inline-block; padding: 12px 24px; border-radius: 5px; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s ease; }
+.btn-primary { background-color: var(--umd-maroon); color: var(--white); }
+.btn-primary:hover { background-color: var(--umd-maroon-dark); color: var(--umd-gold); }
+.btn-secondary { background-color: var(--umd-gold); color: var(--text-dark); }
+.btn-secondary:hover { background-color: #e6b800; color: var(--text-dark); }
+.btn-sm { padding: 8px 16px; font-size: 0.9rem; background-color: var(--umd-maroon); color: var(--white); }
+
+/* Navigation */
+#navbar { background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; max-width: 1200px; margin: 0 auto; }
+.logo a { font-size: 1.5rem; font-weight: 700; color: var(--umd-maroon); }
+.logo span { color: var(--umd-gold); }
+.nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+.nav-links a { color: var(--text-dark); font-weight: 600; }
+.nav-links a:hover { color: var(--umd-maroon); }
+
+/* Highlights the current page in the nav */
+.nav-links a.active-link { color: var(--umd-maroon); border-bottom: 2px solid var(--umd-gold); }
+
+.nav-cta { background-color: var(--umd-maroon); color: var(--white) !important; padding: 8px 16px; border-radius: var(--border-radius); }
+
+.hamburger { display: none; cursor: pointer; background: none; border: none; }
+.bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-dark); transition: all 0.3s ease; }
+
+/* Hero */
+#hero { background: linear-gradient(rgba(122, 0, 25, 0.9), rgba(122, 0, 25, 0.8)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover; height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 20px; }
+.hero-content h1 { color: var(--white); font-size: 3.5rem; margin-bottom: 20px; }
+.hero-content p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px auto; }
+.hero-buttons { display: flex; gap: 15px; justify-content: center; }
+
+/* Grids & Cards */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+/* ========================================================================= */
+/* EXEC BOARD SPECIFIC GRID (2x2 Layout)                                     */
+/* ========================================================================= */
+.board-grid {
+    grid-template-columns: repeat(2, 1fr); /* Forces exactly 2 equal columns */
+}
+
+/* Make sure it stacks nicely on mobile screens */
+@media (max-width: 768px) {
+    .board-grid {
+        grid-template-columns: 1fr; /* Stacks to 1 column on small screens */
+    }
+}/* ========================================================================= */
+/* GRID LAYOUTS (Events, Projects, Board)                                    */
+/* ========================================================================= */
+.grid-container {
+    display: grid;
+    /* Forces exactly 2 equal columns for a 2x2 layout */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.about-grid {
+    display: grid;
+    /* Keeps the About section flexible since it only has 3 items */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* ========================================================================= */
+/* MOBILE RESPONSIVENESS FOR GRIDS                                           */
+/* ========================================================================= */
+@media (max-width: 768px) {
+    /* Stacks the 2x2 grids into a single column on mobile phones */
+    .grid-container {
+        grid-template-columns: 1fr; 
+    }
+}
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+.card { background: var(--white); border-radius: var(--border-radius); box-shadow: var(--card-shadow); padding: 25px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
+
+/* Events */
+.event-card { display: flex; gap: 20px; }
+.event-date { background-color: var(--umd-maroon); color: var(--white); padding: 15px; border-radius: var(--border-radius); text-align: center; min-width: 80px; height: fit-content; }
+.event-date .month { display: block; font-size: 0.9rem; font-weight: 700; }
+.event-date .day { display: block; font-size: 1.5rem; font-weight: 700; color: var(--umd-gold); }
+.event-time { color: var(--text-light); font-weight: 600; margin-bottom: 10px; font-size: 0.9rem; }
+
+/* Projects */
+.project-card { padding: 0; overflow: hidden; }
+.project-img-placeholder { width: 100%; height: 200px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: var(--text-light); }
+.project-content { padding: 20px; }
+
+/* Board */
+.board-member { text-align: center; }
+.headshot-placeholder { width: 150px; height: 150px; background-color: #ccc; border-radius: 50%; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; color: var(--text-light); border: 4px solid var(--umd-maroon); }
+.board-member .role { font-weight: 700; color: var(--umd-maroon); }
+.board-member .major { font-size: 0.9rem; color: var(--text-light); }
+
+/* Contact Forms */
+.contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 40px; }
+.social-links { list-style: none; margin-top: 20px; line-height: 2; }
+.social-links a { font-weight: 600; }
+.contact-form { background: var(--white); padding: 30px; border-radius: var(--border-radius); box-shadow: var(--card-shadow); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--umd-maroon); }
+
+/* Footer */
+footer { background-color: var(--text-dark); color: var(--white); padding: 30px 0; margin-top: auto; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-buttons { flex-direction: column; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .hamburger { display: block; }
+    .nav-links { position: fixed; left: -100%; top: 70px; gap: 0; flex-direction: column; background-color: var(--white); width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 10px rgba(0,0,0,0.1); }
+    .nav-links.active { left: 0; }
+    .nav-links li { margin: 15px 0; }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}/* ========================================================================= */
+/* ALUMNI PAGE SPECIFICS  (please add more information about alumni as it comes)                                                   */
+/* ========================================================================= */
+.alumni-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.alumni-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--umd-gold);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+.alumni-header h3 {
+    margin-bottom: 0;
+}
+.grad-year {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+    background-color: #eee;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+.company {
+    color: var(--umd-maroon);
+    font-size: 1.1rem;
+}/* ========================================================================= */
+/* BOARD MEMBER HEADSHOTS                                                    */
+/* ========================================================================= */
+.board-img {
+    width: 100%;
+    height: 320px; /* Forces all images to be the exact same height */
+    object-fit: cover; /* Ensures the image fills the box without stretching or squishing */
+    border-radius: 8px; /* Gives it nice rounded corners to match your site */
+    margin-bottom: 15px; /* Adds a little space between the photo and their name */
+    border: 3px solid var(--umd-gold); /* Optional: Adds a cool gold border around the photo! */
+}/* ========================================================================= */
+/* NAVIGATION BAR STYLES                                                     */
+/* ========================================================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* This is the magic line! It pushes the logo left and links right */
+    align-items: center; /* Vertically centers the logo and links */
+    padding: 15px 40px; /* Adds breathing room around the edges */
+    background-color: white; /* Matches your Alumni page background */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Adds a very faint shadow under the bar */
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Adjust this number to add more or less space between your links */
+    list-style: none; /* Removes bullet points */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333; /* Dark grey text for the links */
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--umd-maroon); /* Makes the links turn maroon when you hover over them */
+}/* Container for the image at the top of the card */
+.project-img-container {
+    width: 100%;
+    height: 200px; /* Adjust this to make the images taller or shorter */
+    overflow: hidden;
+    border-top-left-radius: 8px; /* Matches card corners */
+    border-top-right-radius: 8px;
+}
+
+/* The actual image settings */
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This crops the image to fill the space without stretching it */
+    display: block;
+}
+
+/* Optional: Slight hover effect to make the cards feel interactive */
+.project-card:hover .project-img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
